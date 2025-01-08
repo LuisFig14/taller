@@ -1,0 +1,1 @@
+ALTER TABLE orders ADD COLUMN id_client BIGINT NOT NULL;
