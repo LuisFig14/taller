@@ -9,6 +9,7 @@ import com.liroa.garage.domain.order.Order;
 import com.liroa.garage.repository.CarRepository;
 import com.liroa.garage.repository.ClientRepository;
 import com.liroa.garage.repository.OrderRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,8 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderById(Long idOrder) {
 
-        return orderRepository.findById(idOrder).orElseThrow(()-> new RuntimeException("Id not found"));
+        return orderRepository.findById(idOrder)
+                .orElseThrow(()-> new EntityNotFoundException("Id not found"));
 
     }
 

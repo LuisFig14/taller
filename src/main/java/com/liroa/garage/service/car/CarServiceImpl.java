@@ -7,6 +7,7 @@ import com.liroa.garage.domain.car.DataUpdateCar;
 import com.liroa.garage.domain.client.Client;
 import com.liroa.garage.repository.CarRepository;
 import com.liroa.garage.repository.ClientRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,7 @@ public class CarServiceImpl implements CarService{
     @Override
     public Car getCarById(Long idCar) {
         return carRepository.findById(idCar)
-                .orElseThrow(()-> new RuntimeException("Id not found"));
+                .orElseThrow(()-> new EntityNotFoundException("id not found by id Car"));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.liroa.garage.domain.client.DataListClient;
 import com.liroa.garage.domain.client.DataRegisterClient;
 import com.liroa.garage.domain.client.DataUpdateClient;
 import com.liroa.garage.repository.ClientRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
     public Client getClientById(Long idClient) {
 
         return clientRepository.findById(idClient)
-                .orElseThrow(() -> new RuntimeException("id not found for get client"));
+                .orElseThrow(() -> new EntityNotFoundException("not found idClient from service"));
 
     }
 
@@ -52,7 +53,7 @@ public class ClientServiceImpl implements ClientService {
     public Client updateClient(Long idClient, DataUpdateClient dataUpdateClient) {
 
         Client client = clientRepository.findById(idClient)
-                .orElseThrow(()-> new RuntimeException("id not found for update client"));
+                .orElseThrow(()-> new RuntimeException("not found exception"));
 
         client.setName(dataUpdateClient.name());
         client.setNumber(dataUpdateClient.number());
